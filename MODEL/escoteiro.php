@@ -1,7 +1,7 @@
 <?php
     namespace MODEL; 
 
-    Class Agricultor{
+    Class escoteiro{
         private ?int $id; 
         private ?string $nome_completo; 
         private ?string $data_nascimento; 

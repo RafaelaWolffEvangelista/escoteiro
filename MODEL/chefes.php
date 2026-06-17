@@ -1,7 +1,7 @@
 <?php
     namespace MODEL; 
 
-    Class Agricultor{
+    Class chefes{
         private ?int $id; 
         private ?string $nome; 
         private ?string $ramo; 
