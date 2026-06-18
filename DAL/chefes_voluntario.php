@@ -35,7 +35,7 @@ class chefes
 
   public function SelectById(int $id)
    {
-      $sql = "Select * from chefes where id=?;";
+      $sql = "Select * from chefes where id_chefe=?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(array($id));
@@ -107,7 +107,7 @@ class chefes
    
    public function Delete(int $id)
    {
-      $sql = "DELETE from chefes WHERE id = ?;";
+      $sql = "DELETE from chefes WHERE id_chefe = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($id));

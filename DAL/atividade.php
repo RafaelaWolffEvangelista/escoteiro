@@ -40,13 +40,13 @@ class atividade
       $con = Conexao::desconectar();
 
      
-         $usuario = new \MODEL\atividade();
-         $usuario->setId($linha['id']);
-         $usuario->setData($linha['data']);
-         $usuario->setTipo($linha['tipo']);
-         $usuario->setDescricao($linha['descricao']);
+         $atividade = new \MODEL\atividade();
+         $atividade->setId($linha['id']);
+         $atividade->setData($linha['data']);
+         $atividade->setTipo($linha['tipo']);
+         $atividade->setDescricao($linha['descricao']);
 
-      return $usuario;
+      return $atividade;
    }
 
      public function SelectByNome(string $nome)
@@ -59,12 +59,12 @@ class atividade
       $con = Conexao::desconectar();
       
      foreach ($registros as $linha) {
-         $usuario = new \MODEL\atividade();
-         $usuario->setId_atividade($linha['id']);
-         $usuario->setData($linha['data']);
-         $usuario->setTipo($linha['tipo']);
-         $usuario->setDescricao($linha['descricao']);
-         $usuario->setId_escoteiro($linha['id_escoteiro']);
+         $atividade = new \MODEL\atividade();
+         $atividade->setId_atividade($linha['id']);
+         $atividade->setData($linha['data']);
+         $atividade->setTipo($linha['tipo']);
+         $atividade->setDescricao($linha['descricao']);
+         $atividade->setId_escoteiro($linha['id_escoteiro']);
 
          $lstAtividade[] = $atividade;
       }
