@@ -23,7 +23,7 @@ class atividade
          $usuario->setData($linha['data']);
          $usuario->setTipo($linha['tipo']);
          $usuario->setDescricao($linha['descricao']);
-
+         $usuario->setId_escoteiro($linha['id_escoteiro']);
          $lstAtividade[] = $atividade;
       }
 
@@ -32,7 +32,7 @@ class atividade
 
   public function SelectById(int $id)
    {
-      $sql = "Select * from atividade where id=?;";
+      $sql = "Select * from atividade where id_atividade=?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(array($id));
@@ -60,10 +60,11 @@ class atividade
       
      foreach ($registros as $linha) {
          $usuario = new \MODEL\atividade();
-         $usuario->setId($linha['id']);
+         $usuario->setId_atividade($linha['id']);
          $usuario->setData($linha['data']);
          $usuario->setTipo($linha['tipo']);
          $usuario->setDescricao($linha['descricao']);
+         $usuario->setId_escoteiro($linha['id_escoteiro']);
 
          $lstAtividade[] = $atividade;
       }
@@ -100,10 +101,10 @@ class atividade
    public function Update(\MODEL\atividade $atividade)
    {
 
-      $sql = "UPDATE atividade SET data = ?, tipo = ?, descricao = ? WHERE id = ?;";
+      $sql = "UPDATE atividade SET data = ?, tipo = ?, descricao = ? WHERE id_atividade = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
-      $result = $query->execute(array($atividade->getData(), $atividade->getTipo(), $atividade->getDescricao(), $atividade->getId()));
+      $result = $query->execute(array($atividade->getData(), $atividade->getTipo(), $atividade->getDescricao(), $atividade->getId_atividade()));
       $con = Conexao::desconectar();
       return $result;
    }
@@ -111,7 +112,7 @@ class atividade
    
    public function Delete(int $id)
    {
-      $sql = "DELETE from atividade WHERE id = ?;";
+      $sql = "DELETE from atividade WHERE id_atividade = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($id));

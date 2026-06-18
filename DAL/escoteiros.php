@@ -25,6 +25,7 @@ class escoteiro
          $escoteiro->setData_nascimento($linha['data_nascimento']);
          $escoteiro->setNome_responsavel($linha['nome_responsavel']);
          $escoteiro->setBolsa_familia($linha['bolsa_familia']);
+         $escoteiro->setStatus($linha['status']);
 
          $lstEscoteiro[] = $escoteiro;
       }

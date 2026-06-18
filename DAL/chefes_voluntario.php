@@ -19,11 +19,13 @@ class chefes
       //$linha é uma linha da tabela 
 
       foreach ($registros as $linha) {
-         $usuario = new \MODEL\chefes();
-         $usuario->setId($linha['id']);
-         $usuario->setNome($linha['nome']);
-         $usuario->setRamo($linha['ramo']);
-         $usuario->setTelefone($linha['telefone']);
+         $chefes = new \MODEL\chefes();
+         $chefes->setId_chefe($linha['id_chefe']);
+         $chefes->setNome($linha['nome']);
+         $chefes->setRamo($linha['ramo']);
+         $chefes->setTelefone($linha['telefone']);
+         $chefes->setStatus($linha['status']);
+         $chefes->setId_usuario($linha['id_usuario']);
 
          $lstChefes[] = $chefes;
       }
@@ -41,13 +43,15 @@ class chefes
       $con = Conexao::desconectar();
 
      
-         $usuario = new \MODEL\chefes();
-         $usuario->setId($linha['id']);
-         $usuario->setNome($linha['nome']);
-         $usuario->setRamo($linha['ramo']);
-         $usuario->setTelefone($linha['telefone']);
+         $chefes = new \MODEL\chefes();
+         $chefes->setId_chefe($linha['id_chefe']);
+         $chefes->setNome($linha['nome']);
+         $chefes->setRamo($linha['ramo']);
+         $chefes->setTelefone($linha['telefone']);
+         $chefes->setStatus($linha['status']);
+         $chefes->setId_usuario($linha['id_usuario']);
 
-      return $usuario;
+      return $chefes;
    }
 
      public function SelectByNome(string $nome)
@@ -60,11 +64,13 @@ class chefes
       $con = Conexao::desconectar();
       
      foreach ($registros as $linha) {
-         $usuario = new \MODEL\chefes();
-         $usuario->setId($linha['id']);
-         $usuario->setNome($linha['nome']);
-         $usuario->setRamo($linha['ramo']);
-         $usuario->setTelefone($linha['telefone']);
+         $chefes = new \MODEL\chefes();
+         $chefes->setId_chefe($linha['id_chefe']);
+         $chefes->setNome($linha['nome']);
+         $chefes->setRamo($linha['ramo']);
+         $chefes->setTelefone($linha['telefone']);
+         $chefes->setStatus($linha['status']);
+         $chefes->setId_usuario($linha['id_usuario']);
 
          $lstChefes[] = $chefes;
       }
@@ -90,10 +96,10 @@ class chefes
    public function Update(\MODEL\chefes $chefes)
    {
 
-      $sql = "UPDATE chefes SET nome = ?, ramo = ?, telefone = ? WHERE id = ?;";
+      $sql = "UPDATE chefes SET nome = ?, ramo = ?, telefone = ? WHERE id_chefe = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
-      $result = $query->execute(array($chefes->getNome(), $chefes->getRamo(), $chefes->getTelefone(), $chefes->getId()));
+      $result = $query->execute(array($chefes->getNome(), $chefes->getRamo(), $chefes->getTelefone(), $chefes->getId_chefe()));
       $con = Conexao::desconectar();
       return $result;
    }
