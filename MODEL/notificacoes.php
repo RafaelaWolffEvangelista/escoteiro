@@ -1,53 +1,35 @@
 <?php
-    namespace MODEL; 
 
-    Class notificacoes{
-        private ?int $id_notificacao; 
-        private ?string $tipo; 
-        private ?string $mensagem; 
-        private ?string $data_envio; 
-        private ?int $id_escoteiro; 
+ namespace MODEL;
+ 
+class Atividades {
+    private ?int $id_atividade;
+    private string $data_atividade;
+    private string $tipo;
+    private string $descricao;
+    private ?int $id_usuario;
 
-        public function __construct()
-        {
-            
-        }
-
-        public function getId_notificacao(){
-           return $this->id_notificacao; 
-        }
-
-        public function setId_notificacao(int $id_notificacao){
-            $this->id_notificacao = $id_notificacao; 
-        }
-
-        public function getTipo(){
-           return $this->tipo; 
-        }
-
-        public function setTipo(string $tipo){
-            $this->tipo = $tipo; 
-        }
-
-        public function getMensagem(){
-           return $this->mensagem; 
-        }
-
-        public function setMensagem(string $mensagem){
-            $this->mensagem = $mensagem; 
-        }
-
-        public function setData_envio(string $data_envio){
-            $this->data_envio = $data_envio; 
-        }
-
-        public function getId_escoteiro(){
-           return $this->id_escoteiro; 
-        }
-
-        public function setId_escoteiro(int $id_escoteiro){
-            $this->id_escoteiro = $id_escoteiro; 
-        }
-        
+    public function __construct(?int $id_atividade = null, string $data_atividade = "", string $tipo = "", string $descricao = "", ?int $id_usuario = null) {
+        $this->id_atividade = $id_atividade;
+        $this->data_atividade = $data_atividade;
+        $this->tipo = $tipo;
+        $this->descricao = $descricao;
+        $this->id_usuario = $id_usuario;
     }
+
+    public function getIdAtividade(): ?int { return $this->id_atividade; }
+    public function setIdAtividade(?int $id): void { $this->id_atividade = $id; }
+
+    public function getDataAtividade(): string { return $this->data_atividade; }
+    public function setDataAtividade(string $data): void { $this->data_atividade = $data; }
+
+    public function getTipo(): string { return $this->tipo; }
+    public function setTipo(string $tipo): void { $this->tipo = $tipo; }
+
+    public function getDescricao(): string { return $this->descricao; }
+    public function setDescricao(string $desc): void { $this->descricao = $desc; }
+
+    public function getIdUsuario(): ?int { return $this->id_usuario; }
+    public function setIdUsuario(?int $id): void { $this->id_usuario = $id; }
+}
 ?>
