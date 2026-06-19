@@ -32,38 +32,38 @@ class notificacoes
 
   public function SelectById(int $id)
    {
-      $sql = "Select * from notificacoes where id=?;";
+      $sql = "SELECT * FROM notificacoes WHERE id_notificacao = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(array($id));
       $linha = $query->fetch(\PDO::FETCH_ASSOC);
       $con = Conexao::desconectar();
 
-     
-         $notificacao = new \MODEL\notificacoes();
-         $notificacao->setId_notificacao($linha['id']);
+      $notificacao = new \MODEL\notificacoes();
+      if ($linha) {
+         $notificacao->setId_notificacao($linha['id_notificacao']);
          $notificacao->setTipo($linha['tipo']);
          $notificacao->setMensagem($linha['mensagem']);
          $notificacao->setData_envio($linha['data_envio']);
          $notificacao->setId_escoteiro($linha['id_escoteiro']);
+      }
 
       return $notificacao;
    }
 
-     public function SelectByNome(string $nome)
+   public function SelectByNome(string $nome)
    {
-      $sql = "Select * from notificacoes where mensagem like ?;";
+      $sql = "SELECT * FROM notificacoes WHERE mensagem LIKE ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(['%' . $nome . '%']);
       $registros = $query->fetchAll(\PDO::FETCH_ASSOC);
       $con = Conexao::desconectar();
-      
-     foreach ($registros as $linha) {
+      $tabela_notificacao = [];
+
+      foreach ($registros as $linha) {
          $notificacao = new \MODEL\notificacoes();
-         $notificacao->setId_notificacao($linha['id']);
-         $notificacao->setTipo($linha['tipo']);
-         $notificacao->setMensagem($linha['mensagem']);
+         $notificacao->setId_notificacao($linha['id_notificacao']);
          $notificacao->setData_envio($linha['data_envio']);
          $notificacao->setId_escoteiro($linha['id_escoteiro']);
 
@@ -101,7 +101,7 @@ class notificacoes
    
    public function Delete(int $id)
    {
-      $sql = "DELETE from notificacoes WHERE id = ?;";
+      $sql = "DELETE FROM notificacoes WHERE id_notificacao = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($id));

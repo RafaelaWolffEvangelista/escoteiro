@@ -6,6 +6,8 @@
         private ?string $nome; 
         private ?string $ramo; 
         private ?int $telefone; 
+        private ?string $status;
+        private ?int $id_usuario;
 
         public function __construct()
         {
@@ -42,6 +44,22 @@
 
         public function setTelefone(int $telefone){
             $this->telefone = $telefone; 
+        }
+
+        public function getStatus(){
+           return $this->status; 
+        }
+
+        public function setStatus(string $status){
+            $this->status = $status; 
+        }
+
+        public function getIdUsuario(){
+           return $this->id_usuario; 
+        }
+
+        public function setIdUsuario(int $id_usuario){
+            $this->id_usuario = $id_usuario; 
         }
         
     }

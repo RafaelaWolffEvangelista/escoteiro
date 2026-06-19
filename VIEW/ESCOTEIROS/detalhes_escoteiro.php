@@ -44,7 +44,7 @@ $escoteiro = $dalEscoteiro->SelectById($id);
         <div class="row grey lighten-2 black-text">
             <form action="operacao_editar_escoteiro.php" method="post" class="row">
                 <div class="input-field col s8">
-                    <label for="id" class="black-text bold">ID: <?php echo $escoteiro->getID() ?>
+                    <label for="id" class="black-text bold">ID: <?php echo $escoteiro->getId() ?>
                     </label>
                     <input type="hidden" name="id" value=<?php echo $id; ?>>
                 </div>
@@ -73,7 +73,7 @@ $escoteiro = $dalEscoteiro->SelectById($id);
                     </a>
 
                     <a class="waves-effect waves-light orange btn"
-                        onclick="JavaScript:location.href='editar_escoteiro.php?id='+ '<?php echo $escoteiro->getID(); ?>'">
+                        onclick="JavaScript:location.href='editar_escoteiro.php?id=' + '<?php echo $escoteiro->getId(); ?>'">
                         <i class="material-icons right">edit</i>Editar
                     </a>
 

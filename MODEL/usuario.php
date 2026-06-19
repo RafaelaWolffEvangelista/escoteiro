@@ -4,7 +4,6 @@
     Class usuario{
         private ?int $id; 
         private ?string $nome; 
-        private ?int $telefone; 
         private ?string $email; 
         private ?string $senha;
         private ?string $cargo; 
@@ -30,14 +29,6 @@
             $this->nome = $nome; 
         }
         
-        public function getTelefone(){
-           return $this->telefone; 
-        }
-
-        public function setTelefone(int $telefone){
-            $this->telefone = $telefone; 
-        }
-
         public function getEmail(){
            return $this->email; 
         }

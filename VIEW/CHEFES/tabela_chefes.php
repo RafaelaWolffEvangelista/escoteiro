@@ -1,18 +1,18 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/DAL/agricultor.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/MODEL/agricultor.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/VIEW/menu.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/chefes_voluntario.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/menu.php";
 
-use DAL\Agricultor;
+use DAL\chefes;
 
-$dalAgricultor = new DAL\Agricultor();
+$dalChefe = new DAL\chefes();
 
 if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
     $termo = $_GET['busca_nome'];
-    $lstAgricultor = $dalAgricultor->SelectByNome($termo);
+    $lstChefe = $dalChefe->SelectByNome($termo);
 } else {
     $termo = "";
-    $lstAgricultor = $dalAgricultor->Select();
+    $lstChefe = $dalChefe->Select();
 }
 
 
@@ -37,15 +37,15 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Agricultores</title>
+    <title>Listar Chefes</title>
 </head>
 
 <body class="teal lighten-4">
     <div>
-        <h1>Listar Agricultores</h1>
+        <h1>Listar Chefes Voluntários</h1>
 
         <div class="row lime lighten-3 black-text">
-            <form action="lstagricultor.php" method="get" class="col s12">
+            <form action="tabela_chefes.php" method="get" class="col s12">
                 <div class="input-field col s12">
                     <input id="search" type="search" name="busca_nome" class="col s6">
                     <label for="icon_prefix"> Filtrar por nome...</label>
@@ -60,39 +60,18 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
             <tr>
                 <th>ID</th>
                 <th>NOME</th>
-                <th>CIDADE</th>
-                <th>BAIRRO</th>
-                <th>IDADE</th>
-                <th> <a class="btn-floating btn-small waves-effect waves-light green">
-                        <i class="material-icons"
-                            onclick="JavaScript:location.href='frmisnagricultor.php'">add</i>
-                    </a></th>
+                <th>FUNÇÃO</th>
+                <th>TELEFONE</th>
+                <th>STATUS</th>
             </tr>
             <?php
-            foreach ($lstAgricultor as $agricultor) { ?>
+            foreach ($lstChefe as $chefe) { ?>
                 <tr>
-                    <td><?php echo $agricultor->getId(); ?></td>
-                    <td><?php echo $agricultor->getNome(); ?></td>
-                    <td><?php echo $agricultor->getCidade(); ?></td>
-                    <td><?php echo $agricultor->getBairro(); ?></td>
-                    <td><?php echo $agricultor->getIdade(); ?></td>
-                    <td>
-                        <a class="btn-floating btn-small waves-effect orange">
-                            <i class="material-icons"
-                                onclick="JavaScript:location.href='frmedtagricultor.php?id='+ '<?php echo $agricultor->getID(); ?>'">edit</i>
-                        </a>
-
-                        <a class="btn-floating btn-small waves-effect blue">
-                            <i class="material-icons"
-                                onclick="JavaScript:location.href='frmdetagricultor.php?id= ' + '<?php echo $agricultor->getID(); ?>'">details</i>
-                        </a>
-
-                        <a class="btn-floating btn-small waves-effect red">
-                            <i class="material-icons"
-                                onclick="JavaScript: remover( <?php echo $agricultor->getId(); ?> )">delete</i>
-                        </a>
-
-                    </td>
+                    <td><?php echo $chefe->getId(); ?></td>
+                    <td><?php echo $chefe->getNome(); ?></td>
+                    <td><?php echo $chefe->getRamo(); ?></td>
+                    <td><?php echo $chefe->getTelefone(); ?></td>
+                    <td><?php echo $chefe->getStatus(); ?></td>
                 </tr>
 
             <?php  } ?>
@@ -102,11 +81,3 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
 </body>
 
 </html>
-
-<script>
-    function remover(id) {
-        if (confirm('Excluir Agricultor ' + id + '?')) {
-            location.href = 'opremagricultor.php?id=' + id;
-        }
-    }
-</script>

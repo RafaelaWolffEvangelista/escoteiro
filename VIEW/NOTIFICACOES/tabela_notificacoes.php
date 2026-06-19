@@ -1,18 +1,18 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/DAL/agricultor.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/MODEL/agricultor.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/lpphpbcc2026/VIEW/menu.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/notificacoes.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/notificacoes.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/menu.php";
 
-use DAL\Agricultor;
+use DAL\notificacoes;
 
-$dalAgricultor = new DAL\Agricultor();
+$dalNotificacao = new DAL\notificacoes();
 
-if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
-    $termo = $_GET['busca_nome'];
-    $lstAgricultor = $dalAgricultor->SelectByNome($termo);
+if (isset($_GET['busca_mensagem']) && !empty($_GET['busca_mensagem'])) {
+    $termo = $_GET['busca_mensagem'];
+    $lstNotificacao = $dalNotificacao->SelectByNome($termo);
 } else {
     $termo = "";
-    $lstAgricultor = $dalAgricultor->Select();
+    $lstNotificacao = $dalNotificacao->Select();
 }
 
 
@@ -37,18 +37,18 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Agricultores</title>
+    <title>Listar Notificações</title>
 </head>
 
 <body class="teal lighten-4">
     <div>
-        <h1>Listar Agricultores</h1>
+        <h1>Listar Notificações</h1>
 
         <div class="row lime lighten-3 black-text">
-            <form action="lstagricultor.php" method="get" class="col s12">
+            <form action="tabela_notificacoes.php" method="get" class="col s12">
                 <div class="input-field col s12">
-                    <input id="search" type="search" name="busca_nome" class="col s6">
-                    <label for="icon_prefix"> Filtrar por nome...</label>
+                    <input id="search" type="search" name="busca_mensagem" class="col s6">
+                    <label for="icon_prefix"> Filtrar por mensagem...</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Filtrar
                         <i class="material-icons right">search</i>
                     </button>
@@ -59,40 +59,19 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
         <table class="striped responsive-table hover: lime lighten-3">
             <tr>
                 <th>ID</th>
-                <th>NOME</th>
-                <th>CIDADE</th>
-                <th>BAIRRO</th>
-                <th>IDADE</th>
-                <th> <a class="btn-floating btn-small waves-effect waves-light green">
-                        <i class="material-icons"
-                            onclick="JavaScript:location.href='frmisnagricultor.php'">add</i>
-                    </a></th>
+                <th>TIPO</th>
+                <th>MENSAGEM</th>
+                <th>DATA ENVIO</th>
+                <th>ESCOTEIRO</th>
             </tr>
             <?php
-            foreach ($lstAgricultor as $agricultor) { ?>
+            foreach ($lstNotificacao as $notificacao) { ?>
                 <tr>
-                    <td><?php echo $agricultor->getId(); ?></td>
-                    <td><?php echo $agricultor->getNome(); ?></td>
-                    <td><?php echo $agricultor->getCidade(); ?></td>
-                    <td><?php echo $agricultor->getBairro(); ?></td>
-                    <td><?php echo $agricultor->getIdade(); ?></td>
-                    <td>
-                        <a class="btn-floating btn-small waves-effect orange">
-                            <i class="material-icons"
-                                onclick="JavaScript:location.href='frmedtagricultor.php?id='+ '<?php echo $agricultor->getID(); ?>'">edit</i>
-                        </a>
-
-                        <a class="btn-floating btn-small waves-effect blue">
-                            <i class="material-icons"
-                                onclick="JavaScript:location.href='frmdetagricultor.php?id= ' + '<?php echo $agricultor->getID(); ?>'">details</i>
-                        </a>
-
-                        <a class="btn-floating btn-small waves-effect red">
-                            <i class="material-icons"
-                                onclick="JavaScript: remover( <?php echo $agricultor->getId(); ?> )">delete</i>
-                        </a>
-
-                    </td>
+                    <td><?php echo $notificacao->getId_notificacao(); ?></td>
+                    <td><?php echo $notificacao->getTipo(); ?></td>
+                    <td><?php echo $notificacao->getMensagem(); ?></td>
+                    <td><?php echo $notificacao->getData_envio(); ?></td>
+                    <td><?php echo $notificacao->getId_escoteiro(); ?></td>
                 </tr>
 
             <?php  } ?>
@@ -102,11 +81,3 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
 </body>
 
 </html>
-
-<script>
-    function remover(id) {
-        if (confirm('Excluir Agricultor ' + id + '?')) {
-            location.href = 'opremagricultor.php?id=' + id;
-        }
-    }
-</script>

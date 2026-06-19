@@ -7,18 +7,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
 use DAL\Escoteiro;
 
-$escoteiro = new \MODEL\escoteiro();
-$escoteiro->setNomeCompleto($_POST['txtNome']);
-$escoteiro->setDataNascimento($_POST['txtDataNasc']);
-$escoteiro->setNomeResponsavel($_POST['txtResponsavel']);
-// Tratamento de checkbox para boolean
-$escoteiro->setBolsaFamilia(isset($_POST['chkBolsa']) ? true : false); 
-$escoteiro->setStatus("Ativo");
-
 $dalEscoteiro = new DAL\Escoteiro();
 $escoteiro = $dalEscoteiro->SelectById($id);
-
-echo $escoteiro->getNomeCompleto();
 ?>
 
 
@@ -51,7 +41,7 @@ echo $escoteiro->getNomeCompleto();
         <div class="row grey lighten-2 black-text">
             <form action="operacao_editar_escoteiro.php" method="post" class="row">
                 <div class="input-field col s8">
-                    <label for="id" class="black-text bold">ID: <?php echo $escoteiro->getID() ?>
+                    <label for="id" class="black-text bold">ID: <?php echo $escoteiro->getId() ?>
                     </label>
                     </br></br>
                     <input type="hidden" name="id" value=<?php echo $id; ?>>
@@ -91,7 +81,7 @@ echo $escoteiro->getNomeCompleto();
                     </button>
 
                     <a class="waves-effect waves-light blue btn"
-                        onclick="JavaScript:location.href='tabela_escoteiros.php'">
+                        onclick="JavaScript:location.href='tabela_escoteiro.php'">
                         <i class="material-icons right">arrow_back</i>Voltar
                     </a>
                 </div>

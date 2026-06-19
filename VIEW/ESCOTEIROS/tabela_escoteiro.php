@@ -3,9 +3,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiro.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 //include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/menu.php";
 
-use DAL\escoteiro;
+use DAL\Escoteiro;
 
-$dalescoteiro = new DAL\escoteiro();
+$dalescoteiro = new DAL\Escoteiro();
 
 if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
     $termo = $_GET['busca_nome'];
@@ -75,16 +75,16 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
                     <td><?php echo $escoteiro->getNomeCompleto(); ?></td>
                     <td><?php echo $escoteiro->getDataNascimento(); ?></td>
                     <td><?php echo $escoteiro->getNomeResponsavel(); ?></td>
-                    <td><?php echo $escoteiro->getBolsa_familia() ? 'Sim' : 'Não'; ?></td>
+                    <td><?php echo $escoteiro->getBolsaFamilia() ? 'Sim' : 'Não'; ?></td>
                     <td>
                         <a class="btn-floating btn-small waves-effect orange">
                             <i class="material-icons"
-                                onclick="JavaScript:location.href='editar_escoteiro.php?id='+ '<?php echo $escoteiro->getId(); ?>'">edit</i>
+                                onclick="JavaScript:location.href='editar_escoteiro.php?id=' + '<?php echo $escoteiro->getId(); ?>'">edit</i>
                         </a>
 
                         <a class="btn-floating btn-small waves-effect blue">
                             <i class="material-icons"
-                                onclick="JavaScript:location.href='detalhes_escoteiro.php?id= ' + '<?php echo $escoteiro->getId(); ?>'">details</i>
+                                onclick="JavaScript:location.href='detalhes_escoteiro.php?id=' + '<?php echo $escoteiro->getId(); ?>'">details</i>
                         </a>
 
                         <a class="btn-floating btn-small waves-effect red">
