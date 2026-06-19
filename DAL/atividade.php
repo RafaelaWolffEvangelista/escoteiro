@@ -86,17 +86,6 @@ class atividade
 
       return $result;
    }
-   {
-
-      $sql = "INSERT INTO atividade (data, tipo, descricao)
-           VALUES ('{$atividade->getData()}', '{$atividade->getTipo()}', '{$atividade->getDescricao()}');";
-
-      $con = Conexao::conectar();
-      $result = $con->query($sql);
-      $con = Conexao::desconectar();
-
-      return $result;
-   }
 
    public function Update(\MODEL\atividade $atividade)
    {

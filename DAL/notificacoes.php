@@ -90,7 +90,6 @@ class notificacoes
 
    public function Update(\MODEL\notificacoes $notificacao)
    {
-
       $sql = "UPDATE notificacoes SET tipo = ?, mensagem = ?, data_envio = ?, id_escoteiro = ? WHERE id = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);

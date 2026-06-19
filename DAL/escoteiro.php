@@ -3,7 +3,7 @@
 namespace DAL;
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php"; //mudar
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
 
 
@@ -11,7 +11,7 @@ class escoteiro
 {
    public function Select()
    {
-      $sql = "Select * from escoteiro;";
+      $sql = "Select * from escoteiros;";
       $con = Conexao::conectar();
       $registros = $con->query($sql);
       $con = Conexao::desconectar();
@@ -35,7 +35,7 @@ class escoteiro
 
   public function SelectById(int $id)
    {
-      $sql = "Select * from escoteiro where id=?;";
+      $sql = "Select * from escoteiros where id=?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(array($id));
@@ -55,7 +55,7 @@ class escoteiro
 
      public function SelectByNome(string $nome)
    {
-      $sql = "Select * from escoteiro where nome_completo like ?;";
+      $sql = "Select * from escoteiros where nome_completo like ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $query->execute(['%' . $nome . '%']);
@@ -81,7 +81,7 @@ class escoteiro
    public function Insert(\MODEL\escoteiro $escoteiro)
    {
 
-      $sql = "INSERT INTO escoteiro (nome_completo, data_nascimento, nome_responsavel, bolsa_familia)
+      $sql = "INSERT INTO escoteiros (nome_completo, data_nascimento, nome_responsavel, bolsa_familia)
            VALUES ('{$escoteiro->getNome_completo()}', '{$escoteiro->getData_nascimento()}', '{$escoteiro->getNome_responsavel()}', '{$escoteiro->getBolsa_familia()}');";
 
       $con = Conexao::conectar();
@@ -94,7 +94,7 @@ class escoteiro
    public function Update(\MODEL\escoteiro $escoteiro)
    {
 
-      $sql = "UPDATE escoteiro SET nome_completo = ?, data_nascimento = ?, nome_responsavel = ?, bolsa_familia = ? WHERE id = ?;";
+      $sql = "UPDATE escoteiros SET nome_completo = ?, data_nascimento = ?, nome_responsavel = ?, bolsa_familia = ? WHERE id = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($escoteiro->getNome_completo(), $escoteiro->getData_nascimento(), $escoteiro->getNome_responsavel(), $escoteiro->getBolsa_familia(), $escoteiro->getId()));
@@ -105,7 +105,7 @@ class escoteiro
    
    public function Delete(int $id)
    {
-      $sql = "DELETE from escoteiro WHERE id = ?;";
+      $sql = "DELETE from escoteiros WHERE id = ?;";
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($id));
