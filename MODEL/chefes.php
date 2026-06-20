@@ -19,22 +19,46 @@ class ChefesVoluntarios {
         $this->id_usuario = $id_usuario;
     }
 
-    public function getIdVoluntario(): ?int { return $this->id_voluntario; }
-    public function setIdVoluntario(?int $id): void { $this->id_voluntario = $id; }
+    public function getIdVoluntario(): ?int {
+         return $this->id_voluntario;
+        }
+    public function setIdVoluntario(?int $id): void {
+         $this->id_voluntario = $id;
+        }
 
-    public function getNome(): string { return $this->nome; }
-    public function setNome(string $nome): void { $this->nome = $nome; }
+    public function getNome(): string {
+         return $this->nome;
+        }
+    public function setNome(string $nome): void { 
+        $this->nome = $nome; 
+        }
 
-    public function getFuncao(): string { return $this->funcao; }
-    public function setFuncao(string $funcao): void { $this->funcao = $funcao; }
+    public function getFuncao(): string {
+         return $this->funcao; 
+        }
+    public function setFuncao(string $funcao): void {
+         $this->funcao = $funcao; 
+        }
 
-    public function getTelefone(): string { return $this->telefone; }
-    public function setTelefone(string $tel): void { $this->telefone = $tel; }
+    public function getTelefone(): string {
+         return $this->telefone; 
+        }
+    public function setTelefone(string $tel): void {
+         $this->telefone = $tel;
+        }
 
-    public function getStatus(): string { return $this->status; }
-    public function setStatus(string $status): void { $this->status = $status; }
+    public function getStatus(): string {
+         return $this->status; 
+        }
+    public function setStatus(string $status): void {
+         $this->status = $status; 
+        }
 
-    public function getIdUsuario(): ?int { return $this->id_usuario; }
-    public function setIdUsuario(?int $id): void { $this->id_usuario = $id; }
+    public function getIdUsuario(): ?int {
+         return $this->id_usuario; 
+        }
+    public function setIdUsuario(?int $id): void {
+         $this->id_usuario = $id; 
+        }
 }
 ?>
