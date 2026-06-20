@@ -6,11 +6,9 @@ $id = $_GET['id'] ?? null;
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/atividade.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/atividade.php";
 
-// CORREÇÃO: Uso correto do namespace com barra invertida
 use MODEL\Atividades;
 
 $dalAtividade = new AtividadesDAL();
-// Chamando o método correto da sua DAL
 $atividade = $dalAtividade->findById($id);
 ?>
 <div class="container">

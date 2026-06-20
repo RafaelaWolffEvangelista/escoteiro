@@ -1,9 +1,8 @@
 <?php 
-// 1. Inclui o menu unificado correto que carrega o CSS roxo e lilás
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";  
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 
-// CORREÇÃO DA QUERY: Calcula em tempo real o total de jovens e o total de adultos escalados
 $pdo = Conexao::getConexao();
 $query = "
     SELECT a.*, 
