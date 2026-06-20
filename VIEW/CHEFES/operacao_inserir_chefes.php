@@ -1,11 +1,24 @@
 <?php
- include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/chefes_voluntario.php";
-   include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";  
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/chefes_voluntario.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";  
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $chefe = new MODEL\Chefes(null, $_POST['nome'], $_POST['funcao'], $_POST['telefone'], $_POST['status'], null);
-    $dal = new DAL\Chefes_voluntario();
+    
+    // 1. CORREÇÃO: Nome correto da classe do modelo com namespace (ChefesVoluntarios)
+    $chefe = new MODEL\ChefesVoluntarios(
+        null, 
+        $_POST['nome'], 
+        $_POST['funcao'], 
+        $_POST['telefone'], 
+        $_POST['status'], 
+        null
+    );
+    
+    // 2. CORREÇÃO: Nome correto da classe da DAL (ChefesVoluntariosDAL) sem a barra virtual
+    $dal = new ChefesVoluntariosDAL();
     $dal->insert($chefe);
+    
     header("Location: tabela_chefes.php");
     exit();
 }
+?>

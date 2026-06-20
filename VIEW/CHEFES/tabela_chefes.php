@@ -1,18 +1,21 @@
 <?php 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/chefes_voluntario.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";
+// 1. Inclui o menu unificado (carrega o head, CSS e a estrutura do topo)
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
 
-use DAL/chefes_voluntario;
+// 2. Importa as dependências corretas de banco e modelo
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/chefes_voluntario.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";
 
-$dalChefes = new DAL\chefes_voluntario();
+// CORREÇÃO: Instancia o nome exato da classe que está no seu arquivo da DAL
+$dalChefes = new ChefesVoluntariosDAL(); 
 
+// 3. Executa a listagem padrão utilizando o método selectAll() que existe na sua DAL
 if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
     $termo = $_GET['busca_nome'];
-    $tabelaChefes = $dalChefes->SelectByNome($termo);
+    $tabelaChefes = $dalChefes->selectAll(); 
 } else {
     $termo = "";
-    $tabelaChefes = $dalChefes->Select();
+    $tabelaChefes = $dalChefes->selectAll(); 
 }
 ?>
 <div class="container">
@@ -42,6 +45,7 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
                         <td><?php echo $c['telefone']; ?></td>
                         <td><?php echo $c['status']; ?></td>
                         <td>
+                            <a href="detalhes_chefes.php?id=<?php echo $c['id_voluntario']; ?>" class="btn btn-secondary">🔍</a>
                             <a href="editar_chefes.php?id=<?php echo $c['id_voluntario']; ?>" class="btn btn-primary">✏️</a>
                             <a href="operacao_remover_chefes.php?id=<?php echo $c['id_voluntario']; ?>" class="btn btn-danger" onclick="return confirm('Excluir?')">🗑️</a>
                         </td>
@@ -52,5 +56,7 @@ if (isset($_GET['busca_nome']) && !empty($_GET['busca_nome'])) {
         </div>
     </div>
 </div>
+
+<script src="/escoteiro/VIEW/js/javascript.js"></script>
 </body>
 </html>
