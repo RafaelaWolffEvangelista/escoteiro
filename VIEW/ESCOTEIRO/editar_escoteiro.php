@@ -1,23 +1,25 @@
 <?php 
-$id = $_GET['idEscoteiro'] ?? null;
+// 1. CORREÇÃO: Alinhado para ler '?id=' vindo do link da tabela de listagem
+$id = $_GET['id'] ?? null;
 
+// 2. Inclui o cabeçalho unificado (carrega o HTML e o estilo CSS)
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";  
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
-use DAL\escoteiros;
-
-$dalEscoteiros = new DAL\escoteiros();
-$escoteiro = $dalEscoteiros->SelectById($id);
-
-echo $escoteiro->getNome();
+// CORREÇÃO: Instanciando o nome real da classe (EscoteiroDAL) de forma direta e chamando findById()
+$dalEscoteiros = new EscoteiroDAL();
+$escoteiro = $dalEscoteiros->findById((int)$id);
 ?>
 
 <div class="container">
     <div class="card" style="max-width: 600px; margin: 0 auto;">
         <div class="card-title">Editar Ficha do Escoteiro</div>
+        
+        <?php if ($escoteiro): ?>
         <form action="operacao_editar_escoteiro.php" method="POST">
             <input type="hidden" name="id_escoteiro" value="<?php echo $escoteiro->getIdEscoteiro(); ?>">
+            
             <div class="form-group">
                 <label>Nome Completo</label>
                 <input type="text" name="nome" value="<?php echo $escoteiro->getNome(); ?>" class="form-control" oninput="validarApenasLetras(this)" required>
@@ -37,13 +39,16 @@ echo $escoteiro->getNome();
             <div class="form-group">
                 <label>Status</label>
                 <select name="status" class="form-control">
-                    <option value="Pago" <?php echo $escoteiro->getStatus()=='Pago'?'selected':''; ?>>Pago</option>
-                    <option value="Pendente" <?php echo $escoteiro->getStatus()=='Pendente'?'selected':''; ?>>Pendente</option>
-                    <option value="Atrasado" <?php echo $escoteiro->getStatus()=='Atrasado'?'selected':''; ?>>Atrasado</option>
+                    <option value="Pago" <?php echo $escoteiro->getStatus() == 'Pago' ? 'selected' : ''; ?>>Pago</option>
+                    <option value="Pendente" <?php echo $escoteiro->getStatus() == 'Pendente' ? 'selected' : ''; ?>>Pendente</option>
+                    <option value="Atrasado" <?php echo $escoteiro->getStatus() == 'Atrasado' ? 'selected' : ''; ?>>Atrasado</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar Dados</button>
         </form>
+        <?php else: ?>
+            <p class="text-danger">Escoteiro não encontrado para edição.</p>
+        <?php endif; ?>
    </div> 
 </div>
 
