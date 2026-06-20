@@ -1,11 +1,11 @@
 <?php 
-// 1. Inclui o menu unificado oficial (carrega o HTML, <head> e o estilo CSS)
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";  
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
-// Captura o ID do escoteiro que veio do botão "Cobrar" da tabela de escoteiros
+
 $id_escoteiro = $_GET['id_escoteiro'] ?? null;
 
 if (!$id_escoteiro) {
@@ -15,7 +15,6 @@ if (!$id_escoteiro) {
 
 $pdo = Conexao::getConexao();
 
-// 1. Busca os dados cadastrais do escoteiro alvo
 $stmtEsc = $pdo->prepare("SELECT * FROM escoteiros WHERE id_escoteiro = ?");
 $stmtEsc->execute([$id_escoteiro]);
 $escoteiro = $stmtEsc->fetch();
@@ -25,18 +24,15 @@ if (!$escoteiro) {
     exit();
 }
 
-// TRAVA DE SEGURANÇA SE JÁ ESTIVER PAGO: Impede a renderização da tela de cobrança
 if (strtolower($escoteiro['status']) === 'pago') {
     echo "<div class='container'><div class='card'><p class='text-success' style='font-weight:bold; font-size: 18px;'>🎉 Este escoteiro já está com as mensalidades em dia!</p><p>Não é permitido enviar notificações de cobrança para membros com o status 'Pago'.</p><br><a href='../ESCOTEIRO/tabela_escoteiro.php' class='btn btn-secondary'>Voltar para Escoteiros</a></div></div>";
     exit();
 }
 
-// 2. Conta o histórico: quantas notificações esse jovem específico já acumulou
 $stmtCount = $pdo->prepare("SELECT COUNT(*) FROM notificacoes WHERE id_escoteiro = ?");
 $stmtCount->execute([$id_escoteiro]);
 $qtdAtual = (int)$stmtCount->fetchColumn();
 
-// 3. Estruturação dinâmica das 3 mensagens exigidas pela gestão
 $mensagensPadrao = [
     1 => [
         "tipo" => "1º Aviso (Antecipado - 5 Dias)",
@@ -52,7 +48,6 @@ $mensagensPadrao = [
     ]
 ];
 
-// Define qual o nível da mensagem atual (se o jovem já tem 3 ou mais avisos, ele continua preso no nível 3)
 $sugestaoProxima = ($qtdAtual < 3) ? $qtdAtual + 1 : 3;
 $avisoConfigurado = $mensagensPadrao[$sugestaoProxima];
 ?>
