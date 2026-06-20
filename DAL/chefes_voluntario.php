@@ -2,7 +2,10 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/chefes.php";
 
+use MODEL\ChefesVoluntarios;
+
 class ChefesVoluntariosDAL {
+
     public function insert(ChefesVoluntarios $chefe): void {
         $pdo = Conexao::getConexao();
         $stmt = $pdo->prepare("INSERT INTO chefes_voluntarios (nome, funcao, telefone, status, id_usuario) VALUES (?, ?, ?, ?, ?)");

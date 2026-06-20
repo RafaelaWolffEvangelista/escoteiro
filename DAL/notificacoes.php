@@ -2,6 +2,8 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/notificacoes.php";
 
+use MODEL\Notificacoes;
+
 class NotificacoesDAL {
     public function insert(Notificacoes $notificacao): void {
         $pdo = Conexao::getConexao();

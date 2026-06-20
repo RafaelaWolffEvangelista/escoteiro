@@ -2,6 +2,8 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
+use MODEL\Escoteiro;
+
 class EscoteiroDAL {
     public function insert(Escoteiro $escoteiro): void {
         $pdo = Conexao::getConexao();
