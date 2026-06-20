@@ -1,5 +1,5 @@
 <?php 
-// 1. Inclui o menu unificado primeiro (ele abre o HTML, <head> e carrega o CSS)
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php";
@@ -7,7 +7,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
 $dalEscoteiros = new EscoteiroDAL(); 
 
-// Puxa os escoteiros calculando em tempo real o total de notificações individuais recebidas
 $pdo = Conexao::getConexao();
 $query = "
     SELECT e.*, 
@@ -30,7 +29,8 @@ $tabela_escoteiro = $pdo->query($query)->fetchAll();
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Responsável</th>
-                        <th>Notificações</th> <th>Atividades Part.</th>
+                        <th>Bolsa Família</th>
+                        <th>Notificações</th>
                         <th>Status Financeiro</th>
                         <th>Gestão</th> <th>Ações</th>
                     </tr>
@@ -38,8 +38,7 @@ $tabela_escoteiro = $pdo->query($query)->fetchAll();
                 <tbody>
                     <?php foreach($tabela_escoteiro as $e): 
                         $atividadesCount = $dalEscoteiros->contarAtividadesParticipando($e['id_escoteiro']);
-                        
-                        // Define a cor da badge do status financeiro baseado nas regras informadas
+
                         $statusText = !empty($e['status']) ? $e['status'] : 'Pendente';
                         $badgeClass = (strtolower($statusText) === 'atrasado') ? 'badge-atrasado' : 'badge-pendente';
                     ?>
@@ -47,14 +46,14 @@ $tabela_escoteiro = $pdo->query($query)->fetchAll();
                         <td><?php echo $e['id_escoteiro']; ?></td>
                         <td><strong><?php echo $e['nome']; ?></strong></td>
                         <td><?php echo $e['nome_responsavel']; ?></td>
-                        
+                        <td><?php echo ($e['bolsa_familia'] == 0) ? 'Sim' : 'Não'; ?></td>
+
                         <td>
                             <span class="badge" style="background: #eedffc; color: #6b46c1; font-weight: bold;">
                                 ✉️ <?php echo $e['total_notificacoes']; ?> enviada(s)
                             </span>
                         </td>
                         
-                        <td><span class="badge" style="background:#ddd; color:black;"><?php echo $atividadesCount; ?> ativ.</span></td>
                         <td><span class="badge <?php echo $badgeClass; ?>"><?php echo $statusText; ?></span></td>
                         
                         <td>
