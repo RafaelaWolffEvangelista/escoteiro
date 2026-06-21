@@ -47,6 +47,10 @@ class EscoteiroDAL {
         return new Escoteiro($row['id_escoteiro'], $row['nome'], $row['data_nascimento'], $row['nome_responsavel'], $row['telefone_responsavel'], $row['bolsa_familia'], $row['status']);
     }
 
+    public function SelectById(int $id): ?Escoteiro {
+    return $this->findById($id);
+}
+
     public function selectAll(): array {
         $pdo = Conexao::getConexao();
         $stmt = $pdo->query("SELECT * FROM escoteiros ORDER BY nome ASC");
