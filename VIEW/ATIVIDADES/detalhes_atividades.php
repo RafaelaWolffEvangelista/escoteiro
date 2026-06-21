@@ -3,7 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
 
 $id = $_GET['id'] ?? null;
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/atividade.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/atividades.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/atividade.php";
 
 use MODEL\Atividades;
