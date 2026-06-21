@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmtNotif = $pdo->prepare("INSERT INTO notificacoes (id_escoteiro, tipo, mensagem, data_envio) VALUES (?, ?, ?, ?)");
     $stmtNotif->execute([$id_escoteiro, $tipo, $mensagem, $data_envio]);
 
+
     if ($numero_notificacao >= 3) {
         $novoStatus = "Atrasado";
     } else {

@@ -1,11 +1,11 @@
 <?php 
-
+// 1. Inclui o menu unificado oficial (carrega o HTML, <head> e o estilo CSS)
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";  
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
-
+// Captura o ID do escoteiro que veio do botão "Cobrar" da tabela de escoteiros
 $id_escoteiro = $_GET['id_escoteiro'] ?? null;
 
 if (!$id_escoteiro) {
@@ -20,7 +20,7 @@ $stmtEsc->execute([$id_escoteiro]);
 $escoteiro = $stmtEsc->fetch();
 
 if (!$escoteiro) {
-    echo "<div class='container'><div class='card'><p class='text-danger'>Escoteiro não encontrado no sistema.</p><br><a href='../ESCOTEIRO/tabela_escoteiro.php' class='btn btn-secondary'>Voltar</a></div></div>";
+    echo "<div class='container'><div class='card'><p class='text-danger'>Escoteiro não encontrado no sistema.</p><br><a href='../escoteiro/tabela_escoteiro.php' class='btn btn-secondary'>Voltar</a></div></div>";
     exit();
 }
 
@@ -67,7 +67,7 @@ $avisoConfigurado = $mensagensPadrao[$sugestaoProxima];
             <div class="form-group">
                 <label style="font-weight: bold; color: #6b46c1;">Gatilho Sugerido pelo Sistema:</label>
                 <div style="background: #eedffc; padding: 12px 15px; border-radius: 8px; margin-top: 5px; font-weight: bold; color: #6b46c1;">
-                    📢 <?php echo $avisoConfigurado['tipo']; ?>
+                    <?php echo $avisoConfigurado['tipo']; ?>
                     <input type="hidden" name="tipo" value="<?php echo $avisoConfigurado['tipo']; ?>">
                 </div>
             </div>
