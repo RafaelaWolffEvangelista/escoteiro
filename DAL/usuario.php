@@ -1,4 +1,6 @@
 <?php
+namespace DAL; 
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/usuario.php";
 
@@ -7,7 +9,8 @@ use MODEL\Usuario;
 class UsuarioDAL {
     
     public function autenticar(string $email, string $senha): ?Usuario {
-        $pdo = Conexao::getConexao();
+        // A barra invertida força o PHP a buscar a Conexao no escopo global
+        $pdo = \Conexao::getConexao(); 
         
         $senha_criptografada = md5($senha);
         
