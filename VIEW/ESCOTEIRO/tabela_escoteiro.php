@@ -1,14 +1,17 @@
 <?php 
-// 1. Inclui o menu unificado primeiro (ele abre o HTML, <head> e carrega o CSS)
+// 1. Inclui o menu unificado primeiro
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
+
+// 2. Importa as conexões e classes usando caminhos absolutos baseados na raiz do servidor
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/conexao.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/DAL/escoteiros.php"; // Certifique-se de que o nome do arquivo é exatamente escoteiros.php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/MODEL/escoteiro.php";
 
-$dalEscoteiros = new EscoteiroDAL(); 
+// CORREÇÃO DO ERRO: Instanciando a classe informando o caminho do Namespace completo
+$dalEscoteiros = new \DAL\EscoteiroDAL(); 
 
 // Puxa os escoteiros calculando em tempo real o total de notificações individuais recebidas
-$pdo = Conexao::getConexao();
+$pdo = \Conexao::getConexao();
 $query = "
     SELECT e.*, 
            (SELECT COUNT(*) FROM notificacoes n WHERE n.id_escoteiro = e.id_escoteiro) as total_notificacoes
@@ -30,7 +33,6 @@ $tabela_escoteiro = $pdo->query($query)->fetchAll();
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Responsável</th>
-                        <th>Bolsa Família</th>
                         <th>Notificações</th>
                         <th>Status Financeiro</th>
                         <th>Gestão</th> <th>Ações</th>
@@ -48,7 +50,6 @@ $tabela_escoteiro = $pdo->query($query)->fetchAll();
                         <td><?php echo $e['id_escoteiro']; ?></td>
                         <td><strong><?php echo $e['nome']; ?></strong></td>
                         <td><?php echo $e['nome_responsavel']; ?></td>
-                        <td><?php echo ($e['bolsa_familia'] == 0) ? 'Sim' : 'Não'; ?></td>
 
                         <td>
                             <span class="badge" style="background: #eedffc; color: #6b46c1; font-weight: bold;">
