@@ -1,11 +1,9 @@
-
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f4f6f9; 
+  background-color: #f4f6f9;
   margin: 0;
   padding: 0;
 }
-
 
 .home-container {
   max-width: 1200px;
@@ -13,13 +11,8 @@ body {
   padding: 0 20px;
 }
 
-
 .welcome-card {
-  background: linear-gradient(
-    135deg,
-    #4b23b6,
-    #6b3cdb
-  ); 
+  background: linear-gradient(135deg, #4b23b6, #6b3cdb);
   color: white;
   padding: 40px;
   border-radius: 12px;
@@ -39,38 +32,34 @@ body {
   opacity: 0.9;
 }
 
-
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
-
 .dash-card {
   background-color: white;
   border-radius: 12px;
   padding: 30px 20px;
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
   color: #333;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease; /
+    box-shadow 0.2s ease;
   border: 1px solid #eef2f5;
 }
 
-
 .dash-card:hover {
-  transform: translateY(-5px); /
-  box-shadow: 0 8px 20px rgba(75, 35, 182, 0.15); 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(75, 35, 182, 0.15);
 }
 
-
 .dash-card .card-icon {
-  background-color: #f0ebff; 
-  color: #4b23b6; 
+  background-color: #f0ebff;
+  color: #4b23b6;
   width: 60px;
   height: 60px;
   border-radius: 50%;
