@@ -20,12 +20,12 @@
         
         <h4>LOGIN</h4>
 
-        <form method="POST" action="/escoteiro/VIEW/home.php">
+        <form method="POST" action="login.php">
             
             <div class="input-container">
-                <label for="usuario">USUÁRIO</label>
+                <label for="usuario">USUÁRIO / E-MAIL</label>
                 <div class="icon"><i class="material-icons">account_circle</i></div>
-                <input id="usuario" type="text" name="usuario" placeholder="Digite seu usuário" required>
+                <input id="usuario" type="text" name="usuario" placeholder="Digite seu e-mail" required>
             </div>
 
             <div class="input-container">
