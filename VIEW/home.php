@@ -1,9 +1,12 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
-    
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header("location:/escoteiro/VIEW/LOGIN/inserir_login.php");
+    exit();
+}
+
+include_once $_SERVER['DOCUMENT_ROOT'] . "/escoteiro/VIEW/shared_nav.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
