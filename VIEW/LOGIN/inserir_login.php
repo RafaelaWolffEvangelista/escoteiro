@@ -20,7 +20,7 @@
         
         <h4>LOGIN</h4>
 
-        <form method="POST" action="login.php">
+        <form method="POST" action="home.php">
             
             <div class="input-container">
                 <label for="usuario">USUÁRIO</label>

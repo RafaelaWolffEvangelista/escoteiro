@@ -25,6 +25,7 @@ if (session_status() == PHP_SESSION_NONE) { session_start(); }
         <span></span>
     </div>
     <ul class="nav-links">
+        <li><a href="/escoteiro/VIEW/home.php">Home</a></li>
         <li><a href="/escoteiro/view/ESCOTEIRO/tabela_escoteiro.php">Cadastro Escoteiro</a></li>
         <li><a href="/escoteiro/view/ATIVIDADES/tabela_atividades.php">Atividades</a></li>
         <li><a href="/escoteiro/view/CHEFES/tabela_chefes.php">Chefes</a></li>

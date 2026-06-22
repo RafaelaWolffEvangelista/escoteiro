@@ -1,0 +1,98 @@
+/* Configurações Gerais de Fonte e Fundo */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f6f9; /* Um cinza bem claro para destacar os cards brancos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Container Principal */
+.home-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Estilização do Card de Boas-Vindas */
+.welcome-card {
+  background: linear-gradient(
+    135deg,
+    #4b23b6,
+    #6b3cdb
+  ); /* Degradê roxo combinando com seu tema */
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.welcome-card h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.welcome-card p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Grid de Cards (Lado a Lado) */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Estilização Individual de Cada Card */
+.dash-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  text-decoration: none; /* Remove o sublinhado de link */
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease; /* Efeito suave ao passar o mouse */
+  border: 1px solid #eef2f5;
+}
+
+/* Efeito de passar o mouse por cima do Card (Hover) */
+.dash-card:hover {
+  transform: translateY(-5px); /* Dá a impressão que o card "flutua" */
+  box-shadow: 0 8px 20px rgba(75, 35, 182, 0.15); /* Sombra roxa sutil */
+}
+
+/* Ícones dentro dos Cards */
+.dash-card .card-icon {
+  background-color: #f0ebff; /* Fundo roxo bem clarinho para o ícone */
+  color: #4b23b6; /* Cor roxa principal */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px auto;
+}
+
+.dash-card .card-icon i {
+  font-size: 30px;
+}
+
+.dash-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  color: #4b23b6;
+}
+
+.dash-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+}
